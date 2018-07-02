@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Display Map</title>
+    <style type="text/css">
+		#map{
+			height: 400px;
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+    
+    <h4>Map result:-</h4>
+    <div id="map"></div>
+    
+<script>
+
+    var urlString = window.location.href;
+    urlParams = parseURLParams(urlString);
+    
+    var Latitude = parseFloat(urlParams.lat);
+    var Longitude = parseFloat(urlParams.lng);
+
+    console.log('Latitude : '+Latitude);
+    console.log('Longitude : '+Longitude);
+
+function initMap() {		
+    var uluru = {lat: Latitude, lng: Longitude};
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: uluru
+    });
+
+    addMarker(uluru);
+
+    // Add marker function (Dynamically)
+    function addMarker(coords) {
+        var marker = new google.maps.Marker({
+        position: coords,
+        map: map,
+        icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+    });
+    }
+}
+
+// Fetch the latitude and longitude from url
+function parseURLParams(url) {
+    var queryStart = url.indexOf("?") + 1,
+        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+        query = url.slice(queryStart, queryEnd - 1),
+        pairs = query.replace(/\+/g, " ").split("&"),
+        parms = {}, i, n, v, nv;
+
+    if (query === url || query === "") return;
+
+    for (i = 0; i < pairs.length; i++) {
+        nv = pairs[i].split("=", 2);
+        n = decodeURIComponent(nv[0]);
+        v = decodeURIComponent(nv[1]);
+
+        if (!parms.hasOwnProperty(n)) parms[n] = [];
+        parms[n].push(nv.length === 2 ? v : null);
+    }
+    return parms;
+}
+
+
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPhAxJO_k3xjjMGWStLt9JJ6RHCCwWmAk&callback=initMap"></script>
+</body>
+</html>

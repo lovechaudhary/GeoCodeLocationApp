@@ -1,0 +1,32 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    title Document
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css')
+  body
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+        a.navbar-brand(href='#') Maps Navigation App
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #navbarSupportedContent.collapse.navbar-collapse
+            
+    .container
+        h2 Welcome to Maps Navigation App
+        br
+        .row
+            .col-md-12
+                form(action="" id="LocationAppForm")
+                    .form-group
+                        input#location.form-control(type="text" name="location" placeholder="Enter Your Address")
+                        input#submit.form-control.btn.btn-primary(type="submit" name="submit" value="Get Location and Map" style="margin:5px 0 0 0;")
+                .row
+                    .col-md-12
+                        h4 Your Search Result                
+                        #sections            
+
+    script(src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous")
+    script(src="https://unpkg.com/axios/dist/axios.min.js")
+    script(src="/js/main.js")
